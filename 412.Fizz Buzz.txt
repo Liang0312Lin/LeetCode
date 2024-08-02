@@ -1,0 +1,22 @@
+//數字替換
+//被3和5整除換成FizzBuzz
+//被3整除換成Fizz
+//被5整除換成Buzz
+#include <vector>
+class Solution {
+public:
+    vector<string> fizzBuzz(int n) {
+        vector<string> answer;
+        for(int i = 1; i <= n; i++){
+            if(i % 3 == 0 && i % 5 == 0)
+                answer.push_back("FizzBuzz");
+            else if(i % 3 == 0)
+                answer.push_back("Fizz");
+            else if(i % 5 == 0)
+                answer.push_back("Buzz");
+            else
+                answer.push_back(to_string(i));
+        }
+        return answer;
+    }
+};
