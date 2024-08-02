@@ -1,0 +1,19 @@
+// 讓所有1相鄰，計算最少交換次數
+// 開始和盡頭也算相鄰
+// 使用sliding Window
+class Solution {
+public:
+    int minSwaps(vector<int>& nums) {
+        int len = nums.size();
+        int sum = accumulate(nums.begin(), nums.end(), 0);
+        if(sum == 0 || sum == nums.size())
+            return 0;
+        int window = accumulate(nums.begin(), nums.begin() + sum, 0);
+        int windowSum = window;
+        for(int i = 0; i < len; i++){
+            window += nums[(i + sum) % len] - nums[i];
+            windowSum = max(windowSum,window);
+        }
+        return sum - windowSum;
+    }
+};
