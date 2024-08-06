@@ -1,0 +1,36 @@
+// 重新排序兩個指標陣列
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode* result = new ListNode(0);
+        ListNode* shadow = result;
+
+        while(list1 != nullptr || list2 != nullptr){
+	    // 如果是nullptr 把值變得很大
+            int num1 = (list1 != nullptr) ? list1->val : 99999;
+            int num2 = (list2 != nullptr) ? list2->val : 99999;
+            int num = (num1 <= num2) ? num1 : num2;
+            ListNode* note = new ListNode(num);
+            shadow->next = note;
+            shadow = shadow->next;
+            if(num1 <= num2)
+                list1 = (list1 != nullptr) ? list1->next : nullptr;
+            else
+                list2 = (list2 != nullptr) ? list2->next : nullptr;
+        }
+        ListNode* ans = result->next;
+        delete result;
+        return ans;
+    }
+};
