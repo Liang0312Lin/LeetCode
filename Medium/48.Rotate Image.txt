@@ -1,0 +1,18 @@
+// 旋轉影像
+// 不能額外做陣列來暫存
+// 先把左上角依序跟另外三個角落各做交換
+// 隔壁位置也依序交換三次直到另一個角落 即可完成90度旋轉
+
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int len = matrix.size();
+        for(int i = 0; i < len / 2; i++){
+            for(int j = i; j < len - 1 - i; j++){
+                swap(matrix[i][j],matrix[j][len - 1 - i]);
+                swap(matrix[i][j],matrix[len - 1 - i][len - 1 - j]);
+                swap(matrix[i][j],matrix[len - 1 - j][i]);
+            }
+        }
+    }
+};
