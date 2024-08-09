@@ -1,0 +1,25 @@
+// 反轉數字並看是否相同
+// 符號也需要反轉 所以小於0就一定是false
+// 例如x= -121 反轉後 = 121-
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        int original = x;
+        if(original < 0){
+            return false;
+        }
+        int residue = 0;
+        long long reverse = 0;
+        while(x != 0){
+            residue = x % 10;
+            reverse = reverse * 10 + residue;
+            x /= 10;
+        }
+        cout << reverse;
+        if(reverse == original)
+            return true;
+        else
+            return false;
+    }
+};
