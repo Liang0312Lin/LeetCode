@@ -1,0 +1,28 @@
+// 字串轉換後的數字總和
+// 字串s和轉換次數k
+// 先把所有字串轉換成數字，再累加
+
+class Solution {
+public:
+    int getLucky(string s, int k) {
+        int num = 0;
+        string str = "";
+        int ans = 0;
+        for(char ch : s){
+            if(ch >= 'a' && ch <= 'z'){
+                num = ch - 'a' + 1;
+                str += to_string(num);
+            }
+        }
+        while(k > 0){
+            int sum = 0;
+            for(char ch : str){
+                sum += ch - '0';
+            }
+            str = to_string(sum);
+            k--;
+        }
+        ans = stoi(str);
+        return ans;
+    }
+};
